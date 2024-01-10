@@ -7,24 +7,6 @@ const classes = ["pieru", "keisari"];
 const navigationOnTop = true;
 const showHeaderTitle = false;
 
-cx(
-  "carousel clearfix",
-  classes,
-  navigationOnTop && "carousel--navi-on-top",
-  !showHeaderTitle && "without-header"
-);
-
-// object
-
-performance.mark("object-start");
-for (let x = 1; x <= ITERATIONS; x = x + 1) {
-  cx("carousel clearfix", classes, {
-    "carousel--navi-on-top": navigationOnTop,
-    "without-header": !showHeaderTitle,
-  });
-}
-performance.mark("object-end");
-
 // no-object
 
 performance.mark("noobject-start");
@@ -38,17 +20,10 @@ for (let x = 1; x <= ITERATIONS; x = x + 1) {
 }
 performance.mark("noobject-end");
 
-const objectMeasure = performance.measure(
-  "object",
-  "object-start",
-  "object-end"
-);
-
 const noobjectMeasure = performance.measure(
   "noobject",
   "noobject-start",
   "noobject-end"
 );
 
-console.log(objectMeasure);
 console.log(noobjectMeasure);
